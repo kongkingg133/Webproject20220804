@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="text-white" th:href="@{/getBoardList}" >게시판</a>
+        <a class="text-white" th:href="@{/account/insertAccount}" >회원가입</a>
+        <form class="d-flex">
+            <input class = "form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<form th:action="@{/account/insertAccount}" method="post">
+        <table class="table table-striped">
+            <tr>
+                <td width="70">아이디</td><td align="left">
+                <input type = "text" class="input-group-text" name="id"/></td>
+            </tr>
+            <tr>
+                <td width="70">비밀번호</td><td align="left">
+                <input type = "text" class="input-group-text"  name="password"/></td>
+            </tr>
+            <tr>
+                <td width="70">이메일</td><td align="left">
+                <input type = "text" class="input-group-text"  name="email"/></td>
+            </tr>
+            <tr>
+                <td width="70">주소</td><td align="left">
+                <input type = "text" class="input-group-text"  name="address"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="회원등록"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

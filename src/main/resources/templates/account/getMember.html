@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>회원 상세 정보</title>
+    <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+</head>
+<body th:align ="center">
+<h1>회원 상세 정보</h1>
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="text-white" th:href="@{/getBoardList}" >게시판</a>
+        <a class="text-white" th:href="@{/account/insertAccount}" >회원가입</a>
+        <a class="text-white" th:href="@{/account/getMemberList}" >회원정보</a>
+        <form class="d-flex">
+            <input class = "form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container container-md">
+    <form th:action="@{/account/updateAccount}" method="post">
+        <input name="seq" type="hidden" th:value="${member.seq}">
+        <table class="table table-striped" th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+            <tr>
+                <td th:text="아이디" width="80"></td>
+                <td><input class="input-group-text" name = "id" type="text" th:value="${member.id}"></td>
+            </tr>
+            <tr>
+                <td th:text="비밀번호" ></td>
+                <td><input class="input-group-text" name = "password" type="text" th:value="${member.password}"></td>
+            </tr>
+            <tr>
+                <td th:text="이메일" ></td>
+                <td><input class="input-group-text" name = "email" type="text" th:value="${member.email}"></td>
+            </tr>
+            <tr>
+                <td th:text="주소" ></td>
+                <td><input class="input-group-text" name = "address" type="text" th:value="${member.address}"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="회원정보 수정">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <a class="btn btn-secondary border-secondary float-right" th:href="@{deleteAccount}"> 회원삭제 </a>
+    <a class="btn btn-secondary border-secondary float-right" th:href="@{getMemberList}"> 회원목록 </a>
+</div>
+</body>
+</html>
+

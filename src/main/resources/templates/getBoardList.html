@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>게시글목록</title>
+    <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="text-white" th:href="@{/getBoardList}" >게시판</a>
+        <a class="text-white" th:href="@{/account/insertAccount}" >회원가입</a>
+        <a class="text-white" th:href="@{/account/getMemberList}" >회원정보</a>
+        <form class="d-flex">
+            <input class = "form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container">
+<h1>게시글 목록</h1>
+<table class="table table-striped" border="1" cellpadding="0" cellspacing="0" width="700" >
+    <tr>
+        <th width="100">번호</th>
+        <th width="200">제목</th>
+        <th width="200">분류</th>
+        <th width="200">내용</th>
+        <th width="150">작성자</th>
+        <th width="150">등록일</th>
+        <th width="100">조회수</th>
+    </tr>
+    <!--
+    a태그를 이용하여 링크를 만들고
+    @{/getBoard controller에 mapping 주소를 직시
+    [html(클라이언트)] seq = ${board.seq} 에서 [자바 서버] @RequestParam으로 매개변수 전달
+    seq(변수명) = ${board.seq} (html(타임리프에서의 데이터 (클라이언트) -->
+
+    <tr th:each=" board : ${boardList}">
+        <td th:text="${board.seq}">
+        <td><a th:href="@{/getBoard(seq =${board.seq})}"
+               th:text="${board.title}"></a> </td>
+        <td th:text="${board.category}"></td>
+        <td th:text="${board.content.length() < 20 ? board.content : board.content.substring(0,20)}"></td>
+        <td th:text="${board.writer}">
+        <td th:text="${board.createDate}">
+        <td th:text="${board.cnt}">
+    </tr>
+</table>
+    <a class="btn btn-secondary border-secondary float-right" th:href="@{/insertBoard}"> 글 등록 </a>
+</div>
+
+<br>
+
+</body>
+</html>
